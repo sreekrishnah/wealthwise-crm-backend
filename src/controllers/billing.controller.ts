@@ -58,7 +58,7 @@ export async function handleCreateCheckoutSession(request: Request, response: Re
       }),
     });
 
-    const data = await cfResponse.json();
+    const data = (await cfResponse.json()) as Record<string, any>;
 
     if (!cfResponse.ok) {
       logger.error(`${SERVICE_NAME}_CHECKOUT_FAILED - ${orgId} : ${JSON.stringify(data)}`);
@@ -128,7 +128,7 @@ export async function handleVerifyPayment(request: Request, response: Response, 
       },
     });
 
-    const data = await cfResponse.json();
+    const data = (await cfResponse.json()) as Record<string, any>;
 
     if (!cfResponse.ok) {
         response.status(404).json({ success: false, error: "Order not found" });
